@@ -1,13 +1,18 @@
 {
   "name": "pern-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "simple todo api build with PostgreSQL, Express, Node",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Express",
+    "Node",
+    "PostgreSQL",
+    "REST API"
+  ],
+  "author": "david-lafontant",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
