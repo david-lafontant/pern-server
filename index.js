@@ -16,7 +16,6 @@ app.post("/todos", async (req, res) => {
     const newTodo = await pool.query("INSERT INTO todo (content) VALUES($1) RETURNING * ", [content]);
     res.json(newTodo.rows);
   } catch (err) {
-
     console.error(err.message);
   }
 
@@ -28,7 +27,7 @@ app.get('/todos', async (req, res) => {
     const todos = await pool.query("SELECT * FROM todo");
     res.json(todos.rows);
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
   }
 });
 
@@ -39,11 +38,9 @@ app.get('/todos/:id', async (req, res) => {
     const todo = await pool.query("SELECT * FROM todo WHERE todo_id = ($1)", [id]);
     res.json(todo.rows[0]);
   } catch (err) { console.error(err.message); }
-})
-
+});
 
 // update a todo
-
 app.put('/todos/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -53,9 +50,20 @@ app.put('/todos/:id', async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-})
-//launch server
+});
 
+// delete todo
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedTodo = await pool.query('DELETE FROM todo WHERE todo_id = $1', [id]);
+    res.json("todo deleted");
+  } catch (err) {
+    console.error(err.message);
+  }
+})
+
+//launch server
 app.listen(port, () => {
   console.log("Api is running and running! ad");
 });
